@@ -13,17 +13,17 @@ A simple usage example :
     myEl.addEventListener('click', e=> console.log('click 2!') );
     myEl.addEventListener('mouseover', e=> console.log('mouse over!') );
 
-	// retrieve the listeners
+    // retrieve the listeners
     console.log( myEl.getEventListeners() );
     /*
     { 
     	click : [
-			{ listener: ƒ, useCapture: false, type:"click"},
-			{ listener: ƒ, useCapture: false, type:"click"}
+		{ listener: ƒ, useCapture: false, type:"click"},
+		{ listener: ƒ, useCapture: false, type:"click"}
         ],
-		mouseover : [
-			{ listener: ƒ, useCapture: false}
-		]
+	mouseover : [
+		{ listener: ƒ, useCapture: false}
+	]
     }
     */
 ```
@@ -49,7 +49,7 @@ You can include this library using the CDN ...
 Package can also be installed via:
 
 ```
- $ npm install geteventlisteners --save
+$ npm install geteventlisteners --save
 ```
 
 and is also available in Github :
@@ -67,9 +67,9 @@ Any event listener declared before this module is imported will be missed.
 
 **Only event listeners declared using `Element.addEventListener()`, are going to be tracked**. For example, the following event listeners declarations, will not be tracked :
 ```html
-	<div onclick="myFunction()"></div>
+<div onclick="myFunction()"></div>
 ```
 and...
 ```javascript
-	myElement.onclick= function(){ /*your code*/ }
+myElement.onclick= function(){ /*your code*/ }
 ```
