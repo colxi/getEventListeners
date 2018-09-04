@@ -1,66 +1,67 @@
 (function() {
     'use strict';
 
-    // todo : use a weakmap to store the references
-    const _eventListeners = new WeakMap();
-
     // save the original methods before overwriting them
     Element.prototype._addEventListener = Element.prototype.addEventListener;
     Element.prototype._removeEventListener = Element.prototype.removeEventListener;
 
-
     /**
      * [addEventListener description]
-     * @param {[type]} a [description]
-     * @param {[type]} b [description]
-     * @param {[type]} c [description]
+     * @param {[type]}  type       [description]
+     * @param {[type]}  listener   [description]
+     * @param {Boolean} useCapture [description]
      */
-    Element.prototype.addEventListener = function(a,b,c) {
-        if(c==undefined)  c=false;
-        this._addEventListener(a,b,c);
+    Element.prototype.addEventListener = function(type,listener,useCapture=false) {
+        // declare listener
+        this._addEventListener(type,listener,useCapture);
 
         if(!this.eventListenerList) this.eventListenerList = {};
-        if(!this.eventListenerList[a]) this.eventListenerList[a] = [];
+        if(!this.eventListenerList[type]) this.eventListenerList[type] = [];
 
-        //this.removeEventListener(a,b,c); // TODO - handle duplicates..
-        this.eventListenerList[a].push({listener:b,useCapture:c});
+        // add listener to  event tracking list
+        this.eventListenerList[type].push( {type, listener, useCapture} );
     };
 
     /**
      * [removeEventListener description]
-     * @param  {[type]} a [description]
-     * @param  {[type]} b [description]
-     * @param  {[type]} c [description]
-     * @return {[type]}   [description]
+     * @param  {[type]}  type       [description]
+     * @param  {[type]}  listener   [description]
+     * @param  {Boolean} useCapture [description]
+     * @return {[type]}             [description]
      */
-    Element.prototype.removeEventListener = function(a,b,c) {
-        if(c==undefined)
-            c=false;
-        this._removeEventListener(a,b,c);
-        if(!this.eventListenerList) this.eventListenerList = {};
-        if(!this.eventListenerList[a]) this.eventListenerList[a] = [];
+    Element.prototype.removeEventListener = function(type,listener,useCapture=false) {
+        // remove listener
+        this._removeEventListener(type,listener,useCapture);
 
-        // Find the event in the list
-        for(var i=0;i<this.eventListenerList[a].length;i++){
-            if(this.eventListenerList[a][i].listener==b && this.eventListenerList[a][i].useCapture==c){ // Hmm..
-                this.eventListenerList[a].splice(i, 1);
+        if(!this.eventListenerList) this.eventListenerList = {};
+        if(!this.eventListenerList[type]) this.eventListenerList[type] = [];
+
+        // Find the event in the list, If a listener is registered twice, one
+        // with capture and one without, remove each one separately. Removal of
+        // a capturing listener does not affect a non-capturing version of the
+        // same listener, and vice versa.
+        for(let i=0; i<this.eventListenerList[type].length; i++){
+            if( this.eventListenerList[type][i].listener===listener && this.eventListenerList[type][i].useCapture===useCapture){
+                this.eventListenerList[type].splice(i, 1);
                 break;
             }
         }
-
-        if(this.eventListenerList[a].length==0) delete this.eventListenerList[a];
+        // if no more events of the removed event type are left,remove the group
+        if(this.eventListenerList[type].length==0) delete this.eventListenerList[type];
     };
 
 
     /**
      * [getEventListeners description]
-     * @param  {[type]} a [description]
-     * @return {[type]}   [description]
+     * @param  {[type]} type [description]
+     * @return {[type]}      [description]
      */
-    Element.prototype.getEventListeners = function(a){
+    Element.prototype.getEventListeners = function(type){
         if(!this.eventListenerList) this.eventListenerList = {};
-        if(a==undefined)  return this.eventListenerList;
-        return this.eventListenerList[a];
+
+        // return reqested listeners type or all them
+        if(type===undefined)  return this.eventListenerList;
+        return this.eventListenerList[type];
     };
 
 

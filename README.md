@@ -14,14 +14,12 @@ A simple usage example :
     myEl.addEventListener('mouseover', e=> console.log('mouse over!') );
 
 	// retrieve the listeners
-    let listeners = myEl.getEventListeners();
-    console.log(listeners);
+    console.log( myEl.getEventListeners() );
     /*
-    Console output :
     { 
     	click : [
-			{ listener: ƒ, useCapture: false},
-			{ listener: ƒ, useCapture: false}
+			{ listener: ƒ, useCapture: false, type:"click"},
+			{ listener: ƒ, useCapture: false, type:"click"}
         ],
 		mouseover : [
 			{ listener: ƒ, useCapture: false}
@@ -30,6 +28,16 @@ A simple usage example :
     */
 ```
 
+Retrieve only the click-event listeners :
+```javascript     
+    console.log( myEl.getEventListeners('click') );
+    /*
+    [
+        { listener: ƒ, useCapture: false, type:"click"},
+        { listener: ƒ, useCapture: false, type:"click"}
+    ]
+    */
+```
 ## Package distribution :
 You can include this library using the CDN ...
 
@@ -56,3 +64,12 @@ To be able to track the event listeners assignements, this module overwrites `El
 Any event listener declared before this module is imported will be missed.
 
 > **In order to be able to track all the listeners, this module must be imported before any event listener is declared.**
+
+**Only event listeners declared using `Element.addEventListener()`, are going to be tracked**. For example, the following event listeners declarations, will not be tracked :
+```html
+	<div onclick="myFunction()"></div>
+```
+and...
+```javascript
+	myElement.onclick= function(){ /*your code*/ }
+    ```
