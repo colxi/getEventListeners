@@ -6,7 +6,7 @@ Returns the event listeners registered on the specified object. The return value
 
 
 A simple usage example :
-```javascript
+```javascript    
     let myEl = document.getElementById('someElementId');
     // add some event listeners to the Element
     myEl.addEventListener('click', e=> console.log('click!') );
@@ -28,6 +28,26 @@ A simple usage example :
 		]
     }
     */
+```
+
+## Package distribution :
+You can include this library using the CDN ...
+
+```
+<script src='https://cdn.jsdelivr.net/gh/colxi/getEventListeners/src/getEventListeners.min.js'></script>
+```
+
+
+Package can also be installed via:
+
+```
+ $ npm install geteventlisteners --save
+```
+
+and is also available in Github :
+
+```
+https://github.com/colxi/keypath-resolve
 ```
 
 ## Limitations
