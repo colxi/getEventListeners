@@ -47,7 +47,7 @@ Package can also be installed via:
 and is also available in Github :
 
 ```
-https://github.com/colxi/keypath-resolve
+https://github.com/colxi/getEventListeners
 ```
 
 ## Limitations
