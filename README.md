@@ -72,4 +72,4 @@ Any event listener declared before this module is imported will be missed.
 and...
 ```javascript
 	myElement.onclick= function(){ /*your code*/ }
-    ```
+```
