@@ -22,7 +22,7 @@ A simple usage example :
 		{ listener: ƒ, useCapture: false, type:"click"}
         ],
 	mouseover : [
-		{ listener: ƒ, useCapture: false}
+		{ listener: ƒ, useCapture: false, type:"mouseover"}
 	]
     }
     */
