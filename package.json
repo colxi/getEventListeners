@@ -1,7 +1,7 @@
 {
     "name": "geteventlisteners",
     "description": "getEventListeners() : Returns an object containing all the event listeners of a DOM Node.",
-    "version": "1.0.6",
+    "version": "1.0.1",
     "main": "./src/getEventListeners.js",
     "keywords": [
         "Element.prototype.getEventListeners",
