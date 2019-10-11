@@ -1,26 +1,26 @@
 {
-    "name": "geteventlisteners",
-    "description": "getEventListeners() : Returns an object containing all the event listeners of a DOM Node.",
-    "version": "1.0.1",
-    "main": "./src/getEventListeners.js",
-    "keywords": [
-        "Element.prototype.getEventListeners",
-        "getEventListeners",
-        "get Event Listeners",
-        "get-event-listeners",
-        "eventListeners",
-        "event-listeners",
-        "event listeners",
-        "getElementListeners",
-        "get Element Listeners",
-        "get-element-listeners"
-    ],
-    "author": "colxi",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/colxi/getEventListeners/"
-    },
-    "dependencies": {},
-    "devDependencies": {}
+  "name": "geteventlisteners",
+  "description": "getEventListeners() : Returns an object containing all the event listeners of a DOM Node.",
+  "version": "1.1.0",
+  "main": "./src/getEventListeners.js",
+  "keywords": [
+    "Element.prototype.getEventListeners",
+    "getEventListeners",
+    "get Event Listeners",
+    "get-event-listeners",
+    "eventListeners",
+    "event-listeners",
+    "event listeners",
+    "getElementListeners",
+    "get Element Listeners",
+    "get-element-listeners"
+  ],
+  "author": "colxi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/colxi/getEventListeners/"
+  },
+  "dependencies": {},
+  "devDependencies": {}
 }
